@@ -816,614 +816,614 @@ def dashboard_app(df, dash_app, plotly_config):
                             ),
                         ],
                     ),
-                    dcc.Tab(
-                        label="Geological Plots",
-                        value="tab-geo",
-                        style=tab_style,
-                        selected_style=tab_selected_style,
-                        children=[
-                            dcc.Tabs(
-                                id="geo-stat",
-                                children=[
-                                    dcc.Tab(
-                                        label="Map Density Heatmap",
-                                        value="tab-map-density",
-                                        style=tab_style,
-                                        selected_style=tab_selected_style,
-                                        children=[
-                                            html.Div(
-                                                id="input-map-density-mandatory",
-                                                style=mandatory_div_style,
-                                                children=[
-                                                    dcc.Dropdown(
-                                                        id="input-map-density-lat",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Latitude Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-map-density-lon",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Longitude Value",
-                                                    ),
-                                                    html.P(
-                                                        "* Mandatory Inputs",
-                                                        style=mandatory_font_style,
-                                                    ),
-                                                ],
-                                            ),
-                                            html.Div(
-                                                id="input-map-density-not-mandatory",
-                                                style=not_mandatory_div_style,
-                                                children=[
-                                                    dcc.Dropdown(
-                                                        id="input-map-density-mag",
-                                                        options=dropdowns,
-                                                        placeholder="Enter z Value",
-                                                    ),
-                                                    dcc.Input(
-                                                        id="input-map-density-radius",
-                                                        placeholder="Enter radius Value",
-                                                    ),
-                                                    dcc.Input(
-                                                        id="input-other-map-density",
-                                                        placeholder="Enter Other parameters",
-                                                    ),
-                                                    html.P(
-                                                        "* Optional Inputs",
-                                                        style=not_mandatory_font_style,
-                                                    ),
-                                                ],
-                                            ),
-                                            html.Br(),
-                                            dbc.Button(
-                                                id="submit-button-map-density",
-                                                n_clicks=0,
-                                                children="Submit",
-                                                color="success",
-                                                style=left_indent_style,
-                                            ),
-                                            dcc.Loading(
-                                                id="loading-map-density",
-                                                type="default",
-                                                children=html.Div(
-                                                    id="output-state-map-density",
-                                                    children=[],
-                                                    style=left_indent_style,
-                                                ),
-                                            ),
-                                        ],
-                                    ),
-                                    dcc.Tab(
-                                        label="Line on Maps Heatmap",
-                                        value="tab-map-line",
-                                        style=tab_style,
-                                        selected_style=tab_selected_style,
-                                        children=[
-                                            html.Div(
-                                                id="input-map-line-mandatory",
-                                                style=mandatory_div_style,
-                                                children=[
-                                                    dcc.Dropdown(
-                                                        id="input-map-line-location",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Loaction Value",
-                                                    ),
-                                                    html.P(
-                                                        "* Mandatory Inputs",
-                                                        style=mandatory_font_style,
-                                                    ),
-                                                ],
-                                            ),
-                                            html.Div(
-                                                id="input-map-line-not-mandatory",
-                                                style=not_mandatory_div_style,
-                                                children=[
-                                                    dcc.Dropdown(
-                                                        id="input-map-line-color",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Color Value",
-                                                    ),
-                                                    dcc.Input(
-                                                        id="input-other-map-line",
-                                                        placeholder="Enter Other parameters",
-                                                    ),
-                                                    html.P(
-                                                        "* Optional Inputs",
-                                                        style=not_mandatory_font_style,
-                                                    ),
-                                                ],
-                                            ),
-                                            html.Br(),
-                                            dbc.Button(
-                                                id="submit-button-map-line",
-                                                n_clicks=0,
-                                                children="Submit",
-                                                color="success",
-                                                style=left_indent_style,
-                                            ),
-                                            dcc.Loading(
-                                                id="loading-map-line",
-                                                type="default",
-                                                children=html.Div(
-                                                    id="output-state-map-line",
-                                                    children=[],
-                                                    style=left_indent_style,
-                                                ),
-                                            ),
-                                        ],
-                                    ),
-                                    dcc.Tab(
-                                        label="Scatterplot on Maps",
-                                        value="tab-map-scatter",
-                                        style=tab_style,
-                                        selected_style=tab_selected_style,
-                                        children=[
-                                            html.Div(
-                                                id="input-map-scatter-mandatory",
-                                                style=mandatory_div_style,
-                                                children=[
-                                                    dcc.Dropdown(
-                                                        id="input-map-scatter-location",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Loaction Value",
-                                                    ),
-                                                    html.P(
-                                                        "* Mandatory Inputs",
-                                                        style=mandatory_font_style,
-                                                    ),
-                                                    # dcc.Dropdown(id='input-map-scatter-lat', options=dropdowns, placeholder='Enter Latitude Value'),
-                                                    # dcc.Dropdown(id='input-map-scatter-lon', options=dropdowns,
-                                                    # placeholder='Enter Longitude Value'), #disabled due to mapbox token
-                                                ],
-                                            ),
-                                            html.Div(
-                                                id="input-map-scatter-not-mandatory",
-                                                style=not_mandatory_div_style,
-                                                children=[
-                                                    dcc.Dropdown(
-                                                        id="input-map-scatter-color",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Color Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-map-scatter-size",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Size Value",
-                                                    ),
-                                                    dcc.Input(
-                                                        id="input-other-map-scatter",
-                                                        placeholder="Enter Other parameters",
-                                                    ),
-                                                    html.P(
-                                                        "* Optional Inputs",
-                                                        style=not_mandatory_font_style,
-                                                    ),
-                                                ],
-                                            ),
-                                            html.Br(),
-                                            dbc.Button(
-                                                id="submit-button-map-scatter",
-                                                n_clicks=0,
-                                                children="Submit",
-                                                color="success",
-                                                style=left_indent_style,
-                                            ),
-                                            dcc.Loading(
-                                                id="loading-map-scatter",
-                                                type="default",
-                                                children=html.Div(
-                                                    id="output-state-map-scatter",
-                                                    children=[],
-                                                    style=left_indent_style,
-                                                ),
-                                            ),
-                                        ],
-                                    ),
-                                ],
-                            ),
-                        ],
-                    ),
-                    dcc.Tab(
-                        label="Financial Charts ",
-                        value="tab-fin",
-                        style=tab_style,
-                        selected_style=tab_selected_style,
-                        children=[
-                            dcc.Tabs(
-                                id="tabs-fin",
-                                children=[
-                                    dcc.Tab(
-                                        label="Candlestick Chart",
-                                        value="tab-candlestick",
-                                        style=tab_style,
-                                        selected_style=tab_selected_style,
-                                        children=[
-                                            html.Div(
-                                                id="input-candlestick-mandatory",
-                                                style=mandatory_div_style,
-                                                children=[
-                                                    dcc.Dropdown(
-                                                        id="input-candlestick-date",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Date Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-candlestick-open",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Open Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-candlestick-high",
-                                                        options=dropdowns,
-                                                        placeholder="Enter High Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-candlestick-low",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Low Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-candlestick-close",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Close Value",
-                                                    ),
-                                                    html.P(
-                                                        "* Mandatory Inputs",
-                                                        style=mandatory_font_style,
-                                                    ),
-                                                ],
-                                            ),
-                                            html.Div(
-                                                id="input-candlestick-not-mandatory",
-                                                style=not_mandatory_div_style,
-                                                children=[
-                                                    dcc.Input(
-                                                        id="input-other-candlestick",
-                                                        placeholder="Enter Other parameters",
-                                                    ),
-                                                    html.P(
-                                                        "* Optional Inputs",
-                                                        style=not_mandatory_font_style,
-                                                    ),
-                                                ],
-                                            ),
-                                            html.Br(),
-                                            dbc.Button(
-                                                id="submit-button-candlestick",
-                                                n_clicks=0,
-                                                children="Submit",
-                                                color="success",
-                                                style=left_indent_style,
-                                            ),
-                                            dcc.Loading(
-                                                id="loading-candlestick",
-                                                type="default",
-                                                children=html.Div(
-                                                    id="output-state-candlestick",
-                                                    children=[],
-                                                    style=left_indent_style,
-                                                ),
-                                            ),
-                                        ],
-                                    ),
-                                    dcc.Tab(
-                                        label="OHLC Chart",
-                                        value="tab-ohlc",
-                                        style=tab_style,
-                                        selected_style=tab_selected_style,
-                                        children=[
-                                            html.Div(
-                                                id="input-ohlc-mandatory",
-                                                style=mandatory_div_style,
-                                                children=[
-                                                    dcc.Dropdown(
-                                                        id="input-ohlc-date",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Date Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-ohlc-open",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Open Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-ohlc-high",
-                                                        options=dropdowns,
-                                                        placeholder="Enter High Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-ohlc-low",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Low Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-ohlc-close",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Close Value",
-                                                    ),
-                                                    html.P(
-                                                        "* Mandatory Inputs",
-                                                        style=mandatory_font_style,
-                                                    ),
-                                                ],
-                                            ),
-                                            html.Div(
-                                                id="input-ohlc-not-mandatory",
-                                                style=not_mandatory_div_style,
-                                                children=[
-                                                    dcc.Input(
-                                                        id="input-other-ohlc",
-                                                        placeholder="Enter Other parameters",
-                                                    ),
-                                                    html.P(
-                                                        "* Optional Inputs",
-                                                        style=not_mandatory_font_style,
-                                                    ),
-                                                ],
-                                            ),
-                                            html.Br(),
-                                            dbc.Button(
-                                                id="submit-button-ohlc",
-                                                n_clicks=0,
-                                                children="Submit",
-                                                color="success",
-                                                style=left_indent_style,
-                                            ),
-                                            dcc.Loading(
-                                                id="loading-ohlc",
-                                                type="default",
-                                                children=html.Div(
-                                                    id="output-state-ohlc",
-                                                    children=[],
-                                                    style=left_indent_style,
-                                                ),
-                                            ),
-                                        ],
-                                    ),
-                                ],
-                            ),
-                        ],
-                    ),
-                    dcc.Tab(
-                        label="Scientific Charts ",
-                        value="tab-sci",
-                        style=tab_style,
-                        selected_style=tab_selected_style,
-                        children=[
-                            dcc.Tabs(
-                                id="tabs-sci",
-                                children=[
-                                    dcc.Tab(
-                                        label="Ternary Plots",
-                                        value="tab-ternary",
-                                        style=tab_style,
-                                        selected_style=tab_selected_style,
-                                        children=[
-                                            html.Div(
-                                                id="input-ternary-mandatory",
-                                                style=mandatory_div_style,
-                                                children=[
-                                                    dcc.Dropdown(
-                                                        id="input-a-ternary",
-                                                        options=dropdowns,
-                                                        placeholder="Enter A corner Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-b-ternary",
-                                                        options=dropdowns,
-                                                        placeholder="Enter B corner Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-c-ternary",
-                                                        options=dropdowns,
-                                                        placeholder="Enter C corner Value",
-                                                    ),
-                                                    html.P(
-                                                        "* Mandatory Inputs",
-                                                        style=mandatory_font_style,
-                                                    ),
-                                                ],
-                                            ),
-                                            html.Div(
-                                                id="input-ternary-not-mandatory",
-                                                style=not_mandatory_div_style,
-                                                children=[
-                                                    dcc.Dropdown(
-                                                        id="input-color-ternary",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Color Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-size-ternary",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Size Value",
-                                                    ),
-                                                    dcc.Input(
-                                                        id="input-other-ternary",
-                                                        placeholder="Enter Other parameters",
-                                                    ),
-                                                    html.P(
-                                                        "* Optional Inputs",
-                                                        style=not_mandatory_font_style,
-                                                    ),
-                                                ],
-                                            ),
-                                            html.Br(),
-                                            dbc.Button(
-                                                id="submit-button-ternary",
-                                                n_clicks=0,
-                                                children="Submit",
-                                                color="success",
-                                                style=left_indent_style,
-                                            ),
-                                            dcc.Loading(
-                                                id="loading-ternary",
-                                                type="default",
-                                                children=html.Div(
-                                                    id="output-state-ternary",
-                                                    children=[],
-                                                    style=left_indent_style,
-                                                ),
-                                            ),
-                                        ],
-                                    ),
-                                    dcc.Tab(
-                                        label="Polar Charts",
-                                        value="tab-polar",
-                                        style=tab_style,
-                                        selected_style=tab_selected_style,
-                                        children=[
-                                            html.Div(
-                                                id="input-polar-mandatory",
-                                                style=mandatory_div_style,
-                                                children=[
-                                                    dcc.Dropdown(
-                                                        id="input-r-polar",
-                                                        options=dropdowns,
-                                                        placeholder="Enter R Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-theta-polar",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Theta Value",
-                                                    ),
-                                                    html.P(
-                                                        "* Mandatory Inputs",
-                                                        style=mandatory_font_style,
-                                                    ),
-                                                ],
-                                            ),
-                                            html.Div(
-                                                id="input-polar-not-mandatory",
-                                                style=not_mandatory_div_style,
-                                                children=[
-                                                    dcc.Dropdown(
-                                                        id="input-color-polar",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Color Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-size-polar",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Size Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-symbol-polar",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Symbol Value",
-                                                    ),
-                                                    dcc.Input(
-                                                        id="input-other-polar",
-                                                        placeholder="Enter Other parameters",
-                                                    ),
-                                                    html.P(
-                                                        "* Optional Inputs",
-                                                        style=not_mandatory_font_style,
-                                                    ),
-                                                ],
-                                            ),
-                                            html.Br(),
-                                            dbc.Button(
-                                                id="submit-button-polar",
-                                                n_clicks=0,
-                                                children="Submit",
-                                                color="success",
-                                                style=left_indent_style,
-                                            ),
-                                            dcc.Loading(
-                                                id="loading-polar",
-                                                type="default",
-                                                children=html.Div(
-                                                    id="output-state-polar",
-                                                    children=[],
-                                                    style=left_indent_style,
-                                                ),
-                                            ),
-                                        ],
-                                    ),
-                                    dcc.Tab(
-                                        label="Streamtube",
-                                        value="tab-streamtube",
-                                        style=tab_style,
-                                        selected_style=tab_selected_style,
-                                        children=[
-                                            html.Div(
-                                                id="input-streamtube-mandatory",
-                                                style=mandatory_div_style,
-                                                children=[
-                                                    dcc.Dropdown(
-                                                        id="input-x-streamtube",
-                                                        options=dropdowns,
-                                                        placeholder="Enter X Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-y-streamtube",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Y Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-z-streamtube",
-                                                        options=dropdowns,
-                                                        placeholder="Enter Z Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-u-streamtube",
-                                                        options=dropdowns,
-                                                        placeholder="Enter U Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-v-streamtube",
-                                                        options=dropdowns,
-                                                        placeholder="Enter V Value",
-                                                    ),
-                                                    dcc.Dropdown(
-                                                        id="input-w-streamtube",
-                                                        options=dropdowns,
-                                                        placeholder="Enter W Value",
-                                                    ),
-                                                    html.P(
-                                                        "* Mandatory Inputs",
-                                                        style=mandatory_font_style,
-                                                    ),
-                                                ],
-                                            ),
-                                            html.Div(
-                                                id="input-streamtube-not-mandatory",
-                                                style=not_mandatory_div_style,
-                                                children=[
-                                                    dcc.Input(
-                                                        id="input-other-streamtube",
-                                                        placeholder="Enter Other parameters",
-                                                    ),
-                                                    html.P(
-                                                        "* Optional Inputs",
-                                                        style=not_mandatory_font_style,
-                                                    ),
-                                                ],
-                                            ),
-                                            html.Br(),
-                                            dbc.Button(
-                                                id="submit-button-streamtube",
-                                                n_clicks=0,
-                                                children="Submit",
-                                                color="success",
-                                                style=left_indent_style,
-                                            ),
-                                            dcc.Loading(
-                                                id="loading-streamtube",
-                                                type="default",
-                                                children=html.Div(
-                                                    id="output-state-streamtube",
-                                                    children=[],
-                                                    style=left_indent_style,
-                                                ),
-                                            ),
-                                        ],
-                                    ),
-                                ],
-                            ),
-                        ],
-                    ),
+                    # dcc.Tab(
+                    #     label="Geological Plots",
+                    #     value="tab-geo",
+                    #     style=tab_style,
+                    #     selected_style=tab_selected_style,
+                    #     children=[
+                    #         dcc.Tabs(
+                    #             id="geo-stat",
+                    #             children=[
+                    #                 dcc.Tab(
+                    #                     label="Map Density Heatmap",
+                    #                     value="tab-map-density",
+                    #                     style=tab_style,
+                    #                     selected_style=tab_selected_style,
+                    #                     children=[
+                    #                         html.Div(
+                    #                             id="input-map-density-mandatory",
+                    #                             style=mandatory_div_style,
+                    #                             children=[
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-map-density-lat",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Latitude Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-map-density-lon",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Longitude Value",
+                    #                                 ),
+                    #                                 html.P(
+                    #                                     "* Mandatory Inputs",
+                    #                                     style=mandatory_font_style,
+                    #                                 ),
+                    #                             ],
+                    #                         ),
+                    #                         html.Div(
+                    #                             id="input-map-density-not-mandatory",
+                    #                             style=not_mandatory_div_style,
+                    #                             children=[
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-map-density-mag",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter z Value",
+                    #                                 ),
+                    #                                 dcc.Input(
+                    #                                     id="input-map-density-radius",
+                    #                                     placeholder="Enter radius Value",
+                    #                                 ),
+                    #                                 dcc.Input(
+                    #                                     id="input-other-map-density",
+                    #                                     placeholder="Enter Other parameters",
+                    #                                 ),
+                    #                                 html.P(
+                    #                                     "* Optional Inputs",
+                    #                                     style=not_mandatory_font_style,
+                    #                                 ),
+                    #                             ],
+                    #                         ),
+                    #                         html.Br(),
+                    #                         dbc.Button(
+                    #                             id="submit-button-map-density",
+                    #                             n_clicks=0,
+                    #                             children="Submit",
+                    #                             color="success",
+                    #                             style=left_indent_style,
+                    #                         ),
+                    #                         dcc.Loading(
+                    #                             id="loading-map-density",
+                    #                             type="default",
+                    #                             children=html.Div(
+                    #                                 id="output-state-map-density",
+                    #                                 children=[],
+                    #                                 style=left_indent_style,
+                    #                             ),
+                    #                         ),
+                    #                     ],
+                    #                 ),
+                    #                 dcc.Tab(
+                    #                     label="Line on Maps Heatmap",
+                    #                     value="tab-map-line",
+                    #                     style=tab_style,
+                    #                     selected_style=tab_selected_style,
+                    #                     children=[
+                    #                         html.Div(
+                    #                             id="input-map-line-mandatory",
+                    #                             style=mandatory_div_style,
+                    #                             children=[
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-map-line-location",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Loaction Value",
+                    #                                 ),
+                    #                                 html.P(
+                    #                                     "* Mandatory Inputs",
+                    #                                     style=mandatory_font_style,
+                    #                                 ),
+                    #                             ],
+                    #                         ),
+                    #                         html.Div(
+                    #                             id="input-map-line-not-mandatory",
+                    #                             style=not_mandatory_div_style,
+                    #                             children=[
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-map-line-color",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Color Value",
+                    #                                 ),
+                    #                                 dcc.Input(
+                    #                                     id="input-other-map-line",
+                    #                                     placeholder="Enter Other parameters",
+                    #                                 ),
+                    #                                 html.P(
+                    #                                     "* Optional Inputs",
+                    #                                     style=not_mandatory_font_style,
+                    #                                 ),
+                    #                             ],
+                    #                         ),
+                    #                         html.Br(),
+                    #                         dbc.Button(
+                    #                             id="submit-button-map-line",
+                    #                             n_clicks=0,
+                    #                             children="Submit",
+                    #                             color="success",
+                    #                             style=left_indent_style,
+                    #                         ),
+                    #                         dcc.Loading(
+                    #                             id="loading-map-line",
+                    #                             type="default",
+                    #                             children=html.Div(
+                    #                                 id="output-state-map-line",
+                    #                                 children=[],
+                    #                                 style=left_indent_style,
+                    #                             ),
+                    #                         ),
+                    #                     ],
+                    #                 ),
+                    #                 dcc.Tab(
+                    #                     label="Scatterplot on Maps",
+                    #                     value="tab-map-scatter",
+                    #                     style=tab_style,
+                    #                     selected_style=tab_selected_style,
+                    #                     children=[
+                    #                         html.Div(
+                    #                             id="input-map-scatter-mandatory",
+                    #                             style=mandatory_div_style,
+                    #                             children=[
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-map-scatter-location",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Loaction Value",
+                    #                                 ),
+                    #                                 html.P(
+                    #                                     "* Mandatory Inputs",
+                    #                                     style=mandatory_font_style,
+                    #                                 ),
+                    #                                 # dcc.Dropdown(id='input-map-scatter-lat', options=dropdowns, placeholder='Enter Latitude Value'),
+                    #                                 # dcc.Dropdown(id='input-map-scatter-lon', options=dropdowns,
+                    #                                 # placeholder='Enter Longitude Value'), #disabled due to mapbox token
+                    #                             ],
+                    #                         ),
+                    #                         html.Div(
+                    #                             id="input-map-scatter-not-mandatory",
+                    #                             style=not_mandatory_div_style,
+                    #                             children=[
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-map-scatter-color",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Color Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-map-scatter-size",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Size Value",
+                    #                                 ),
+                    #                                 dcc.Input(
+                    #                                     id="input-other-map-scatter",
+                    #                                     placeholder="Enter Other parameters",
+                    #                                 ),
+                    #                                 html.P(
+                    #                                     "* Optional Inputs",
+                    #                                     style=not_mandatory_font_style,
+                    #                                 ),
+                    #                             ],
+                    #                         ),
+                    #                         html.Br(),
+                    #                         dbc.Button(
+                    #                             id="submit-button-map-scatter",
+                    #                             n_clicks=0,
+                    #                             children="Submit",
+                    #                             color="success",
+                    #                             style=left_indent_style,
+                    #                         ),
+                    #                         dcc.Loading(
+                    #                             id="loading-map-scatter",
+                    #                             type="default",
+                    #                             children=html.Div(
+                    #                                 id="output-state-map-scatter",
+                    #                                 children=[],
+                    #                                 style=left_indent_style,
+                    #                             ),
+                    #                         ),
+                    #                     ],
+                    #                 ),
+                    #             ],
+                    #         ),
+                    #     ],
+                    # ),
+                    # dcc.Tab(
+                    #     label="Financial Charts ",
+                    #     value="tab-fin",
+                    #     style=tab_style,
+                    #     selected_style=tab_selected_style,
+                    #     children=[
+                    #         dcc.Tabs(
+                    #             id="tabs-fin",
+                    #             children=[
+                    #                 dcc.Tab(
+                    #                     label="Candlestick Chart",
+                    #                     value="tab-candlestick",
+                    #                     style=tab_style,
+                    #                     selected_style=tab_selected_style,
+                    #                     children=[
+                    #                         html.Div(
+                    #                             id="input-candlestick-mandatory",
+                    #                             style=mandatory_div_style,
+                    #                             children=[
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-candlestick-date",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Date Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-candlestick-open",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Open Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-candlestick-high",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter High Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-candlestick-low",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Low Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-candlestick-close",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Close Value",
+                    #                                 ),
+                    #                                 html.P(
+                    #                                     "* Mandatory Inputs",
+                    #                                     style=mandatory_font_style,
+                    #                                 ),
+                    #                             ],
+                    #                         ),
+                    #                         html.Div(
+                    #                             id="input-candlestick-not-mandatory",
+                    #                             style=not_mandatory_div_style,
+                    #                             children=[
+                    #                                 dcc.Input(
+                    #                                     id="input-other-candlestick",
+                    #                                     placeholder="Enter Other parameters",
+                    #                                 ),
+                    #                                 html.P(
+                    #                                     "* Optional Inputs",
+                    #                                     style=not_mandatory_font_style,
+                    #                                 ),
+                    #                             ],
+                    #                         ),
+                    #                         html.Br(),
+                    #                         dbc.Button(
+                    #                             id="submit-button-candlestick",
+                    #                             n_clicks=0,
+                    #                             children="Submit",
+                    #                             color="success",
+                    #                             style=left_indent_style,
+                    #                         ),
+                    #                         dcc.Loading(
+                    #                             id="loading-candlestick",
+                    #                             type="default",
+                    #                             children=html.Div(
+                    #                                 id="output-state-candlestick",
+                    #                                 children=[],
+                    #                                 style=left_indent_style,
+                    #                             ),
+                    #                         ),
+                    #                     ],
+                    #                 ),
+                    #                 dcc.Tab(
+                    #                     label="OHLC Chart",
+                    #                     value="tab-ohlc",
+                    #                     style=tab_style,
+                    #                     selected_style=tab_selected_style,
+                    #                     children=[
+                    #                         html.Div(
+                    #                             id="input-ohlc-mandatory",
+                    #                             style=mandatory_div_style,
+                    #                             children=[
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-ohlc-date",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Date Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-ohlc-open",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Open Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-ohlc-high",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter High Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-ohlc-low",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Low Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-ohlc-close",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Close Value",
+                    #                                 ),
+                    #                                 html.P(
+                    #                                     "* Mandatory Inputs",
+                    #                                     style=mandatory_font_style,
+                    #                                 ),
+                    #                             ],
+                    #                         ),
+                    #                         html.Div(
+                    #                             id="input-ohlc-not-mandatory",
+                    #                             style=not_mandatory_div_style,
+                    #                             children=[
+                    #                                 dcc.Input(
+                    #                                     id="input-other-ohlc",
+                    #                                     placeholder="Enter Other parameters",
+                    #                                 ),
+                    #                                 html.P(
+                    #                                     "* Optional Inputs",
+                    #                                     style=not_mandatory_font_style,
+                    #                                 ),
+                    #                             ],
+                    #                         ),
+                    #                         html.Br(),
+                    #                         dbc.Button(
+                    #                             id="submit-button-ohlc",
+                    #                             n_clicks=0,
+                    #                             children="Submit",
+                    #                             color="success",
+                    #                             style=left_indent_style,
+                    #                         ),
+                    #                         dcc.Loading(
+                    #                             id="loading-ohlc",
+                    #                             type="default",
+                    #                             children=html.Div(
+                    #                                 id="output-state-ohlc",
+                    #                                 children=[],
+                    #                                 style=left_indent_style,
+                    #                             ),
+                    #                         ),
+                    #                     ],
+                    #                 ),
+                    #             ],
+                    #         ),
+                    #     ],
+                    # ),
+                    # dcc.Tab(
+                    #     label="Scientific Charts ",
+                    #     value="tab-sci",
+                    #     style=tab_style,
+                    #     selected_style=tab_selected_style,
+                    #     children=[
+                    #         dcc.Tabs(
+                    #             id="tabs-sci",
+                    #             children=[
+                    #                 dcc.Tab(
+                    #                     label="Ternary Plots",
+                    #                     value="tab-ternary",
+                    #                     style=tab_style,
+                    #                     selected_style=tab_selected_style,
+                    #                     children=[
+                    #                         html.Div(
+                    #                             id="input-ternary-mandatory",
+                    #                             style=mandatory_div_style,
+                    #                             children=[
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-a-ternary",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter A corner Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-b-ternary",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter B corner Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-c-ternary",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter C corner Value",
+                    #                                 ),
+                    #                                 html.P(
+                    #                                     "* Mandatory Inputs",
+                    #                                     style=mandatory_font_style,
+                    #                                 ),
+                    #                             ],
+                    #                         ),
+                    #                         html.Div(
+                    #                             id="input-ternary-not-mandatory",
+                    #                             style=not_mandatory_div_style,
+                    #                             children=[
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-color-ternary",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Color Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-size-ternary",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Size Value",
+                    #                                 ),
+                    #                                 dcc.Input(
+                    #                                     id="input-other-ternary",
+                    #                                     placeholder="Enter Other parameters",
+                    #                                 ),
+                    #                                 html.P(
+                    #                                     "* Optional Inputs",
+                    #                                     style=not_mandatory_font_style,
+                    #                                 ),
+                    #                             ],
+                    #                         ),
+                    #                         html.Br(),
+                    #                         dbc.Button(
+                    #                             id="submit-button-ternary",
+                    #                             n_clicks=0,
+                    #                             children="Submit",
+                    #                             color="success",
+                    #                             style=left_indent_style,
+                    #                         ),
+                    #                         dcc.Loading(
+                    #                             id="loading-ternary",
+                    #                             type="default",
+                    #                             children=html.Div(
+                    #                                 id="output-state-ternary",
+                    #                                 children=[],
+                    #                                 style=left_indent_style,
+                    #                             ),
+                    #                         ),
+                    #                     ],
+                    #                 ),
+                    #                 dcc.Tab(
+                    #                     label="Polar Charts",
+                    #                     value="tab-polar",
+                    #                     style=tab_style,
+                    #                     selected_style=tab_selected_style,
+                    #                     children=[
+                    #                         html.Div(
+                    #                             id="input-polar-mandatory",
+                    #                             style=mandatory_div_style,
+                    #                             children=[
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-r-polar",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter R Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-theta-polar",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Theta Value",
+                    #                                 ),
+                    #                                 html.P(
+                    #                                     "* Mandatory Inputs",
+                    #                                     style=mandatory_font_style,
+                    #                                 ),
+                    #                             ],
+                    #                         ),
+                    #                         html.Div(
+                    #                             id="input-polar-not-mandatory",
+                    #                             style=not_mandatory_div_style,
+                    #                             children=[
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-color-polar",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Color Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-size-polar",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Size Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-symbol-polar",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Symbol Value",
+                    #                                 ),
+                    #                                 dcc.Input(
+                    #                                     id="input-other-polar",
+                    #                                     placeholder="Enter Other parameters",
+                    #                                 ),
+                    #                                 html.P(
+                    #                                     "* Optional Inputs",
+                    #                                     style=not_mandatory_font_style,
+                    #                                 ),
+                    #                             ],
+                    #                         ),
+                    #                         html.Br(),
+                    #                         dbc.Button(
+                    #                             id="submit-button-polar",
+                    #                             n_clicks=0,
+                    #                             children="Submit",
+                    #                             color="success",
+                    #                             style=left_indent_style,
+                    #                         ),
+                    #                         dcc.Loading(
+                    #                             id="loading-polar",
+                    #                             type="default",
+                    #                             children=html.Div(
+                    #                                 id="output-state-polar",
+                    #                                 children=[],
+                    #                                 style=left_indent_style,
+                    #                             ),
+                    #                         ),
+                    #                     ],
+                    #                 ),
+                    #                 dcc.Tab(
+                    #                     label="Streamtube",
+                    #                     value="tab-streamtube",
+                    #                     style=tab_style,
+                    #                     selected_style=tab_selected_style,
+                    #                     children=[
+                    #                         html.Div(
+                    #                             id="input-streamtube-mandatory",
+                    #                             style=mandatory_div_style,
+                    #                             children=[
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-x-streamtube",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter X Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-y-streamtube",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Y Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-z-streamtube",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter Z Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-u-streamtube",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter U Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-v-streamtube",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter V Value",
+                    #                                 ),
+                    #                                 dcc.Dropdown(
+                    #                                     id="input-w-streamtube",
+                    #                                     options=dropdowns,
+                    #                                     placeholder="Enter W Value",
+                    #                                 ),
+                    #                                 html.P(
+                    #                                     "* Mandatory Inputs",
+                    #                                     style=mandatory_font_style,
+                    #                                 ),
+                    #                             ],
+                    #                         ),
+                    #                         html.Div(
+                    #                             id="input-streamtube-not-mandatory",
+                    #                             style=not_mandatory_div_style,
+                    #                             children=[
+                    #                                 dcc.Input(
+                    #                                     id="input-other-streamtube",
+                    #                                     placeholder="Enter Other parameters",
+                    #                                 ),
+                    #                                 html.P(
+                    #                                     "* Optional Inputs",
+                    #                                     style=not_mandatory_font_style,
+                    #                                 ),
+                    #                             ],
+                    #                         ),
+                    #                         html.Br(),
+                    #                         dbc.Button(
+                    #                             id="submit-button-streamtube",
+                    #                             n_clicks=0,
+                    #                             children="Submit",
+                    #                             color="success",
+                    #                             style=left_indent_style,
+                    #                         ),
+                    #                         dcc.Loading(
+                    #                             id="loading-streamtube",
+                    #                             type="default",
+                    #                             children=html.Div(
+                    #                                 id="output-state-streamtube",
+                    #                                 children=[],
+                    #                                 style=left_indent_style,
+                    #                             ),
+                    #                         ),
+                    #                     ],
+                    #                 ),
+                    #             ],
+                    #         ),
+                    #     ],
+                    # ),
                     dcc.Tab(
                         label="Trend Line",
                         value="tab-trend",
@@ -1606,11 +1606,15 @@ def dashboard_app(df, dash_app, plotly_config):
                 "color": strNoneConvert(input3),
                 "line_group": strNoneConvert(input4),
                 "template": plot_theme,
-                "color_continuous_scale": plotly_color_continuous_scale,
+                # "color_continuous_scale": plotly_color_continuous_scale,
+                "color_discrete_sequence": px.colors.qualitative.Antique,
             }
 
-            input_parametes.update(otherinputtodict(input5))
+            print(plotly_color_continuous_scale)
+            print(px.colors.qualitative.Antique)
 
+            input_parametes.update(otherinputtodict(input5))
+            print(input_parametes)
             fig = px.line(df, **input_parametes)
             return dcc.Graph(id="graph-line-tabs", figure=fig)
         return "Fill the required fields and click on 'Submit' to generate the graph you want!!"
@@ -1658,7 +1662,8 @@ def dashboard_app(df, dash_app, plotly_config):
                 "values": strNoneConvert(input1),
                 "names": strNoneConvert(input2),
                 "template": plot_theme,
-                "color_continuous_scale": plotly_color_continuous_scale,
+                # "color_continuous_scale": plotly_color_continuous_scale,
+                "color_discrete_sequence": px.colors.qualitative.Antique,
             }
 
             input_parametes.update(otherinputtodict(input3))
@@ -1734,7 +1739,8 @@ def dashboard_app(df, dash_app, plotly_config):
                 "y": strNoneConvert(input2),
                 "color": strNoneConvert(input3),
                 "template": plot_theme,
-                "color_continuous_scale": plotly_color_continuous_scale,
+                # "color_continuous_scale": plotly_color_continuous_scale,
+                "color_discrete_sequence": px.colors.qualitative.Antique,
             }
             input_parametes.update(otherinputtodict(input4))
 
@@ -1758,7 +1764,8 @@ def dashboard_app(df, dash_app, plotly_config):
                     "x": strNoneConvert(input1),
                     "color": strNoneConvert(input2),
                     "template": plot_theme,
-                    "color_continuous_scale": plotly_color_continuous_scale,
+                    # "color_continuous_scale": plotly_color_continuous_scale,
+                    "color_discrete_sequence": px.colors.qualitative.Antique,
                 }
 
                 input_parametes.update(otherinputtodict(input3))
@@ -1787,7 +1794,8 @@ def dashboard_app(df, dash_app, plotly_config):
                 "color": strNoneConvert(input3),
                 "line_group": strNoneConvert(input4),
                 "template": plot_theme,
-                "color_continuous_scale": plotly_color_continuous_scale,
+                # "color_continuous_scale": plotly_color_continuous_scale,
+                "color_discrete_sequence": px.colors.qualitative.Antique,
             }
             input_parametes.update(otherinputtodict(input5))
 
@@ -1838,7 +1846,8 @@ def dashboard_app(df, dash_app, plotly_config):
                     "y": strNoneConvert(input1),
                     "color": strNoneConvert(input3),
                     "template": plot_theme,
-                    "color_continuous_scale": plotly_color_continuous_scale,
+                    # "color_continuous_scale": plotly_color_continuous_scale,
+                    "color_discrete_sequence": px.colors.qualitative.Antique,
                 }
                 input_parametes.update(otherinputtodict(input4))
 
