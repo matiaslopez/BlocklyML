@@ -459,7 +459,7 @@ var VarData = {};
         throw Error("Unknown flow statement.");
     };
     /*
-     * Custom 
+     * Custom
      */
     Blockly.Python.pandas = {};
     Blockly.Python['pandas_read_csv'] = function (a) {
@@ -485,7 +485,8 @@ var VarData = {};
         if ((e != "") && (d != "")) {
             return [c, Blockly.Python.ORDER_FUNCTION_CALL];
         } else {
-            return ["None", Blockly.Python.ORDER_FUNCTION_CALL];
+            return ["{}", Blockly.Python.ORDER_FUNCTION_CALL]; // mlopez fix create empty dict
+            // return ["None", Blockly.Python.ORDER_FUNCTION_CALL];
         }
     }
     Blockly.Python["dict_append"] = function (a) {
@@ -2089,7 +2090,7 @@ var VarData = {};
             if (a.getInputTargetBlock("VALUE").outputConnection.getCheck() == "DataFrame") {
                 VarData[Blockly.Python.variableDB_.getName(a.getFieldValue("VAR"), Blockly.VARIABLE_CATEGORY_NAME)] = b;
             }
-    
+
         }
         return Blockly.Python.variableDB_.getName(a.getFieldValue("VAR"), Blockly.VARIABLE_CATEGORY_NAME) + " = " + b + "\n";
     };
