@@ -495,7 +495,8 @@ var VarData = {};
         var c = Blockly.Python.valueToCode(a, "KEY", Blockly.Python.ORDER_NONE) || "";
         var d = Blockly.Python.valueToCode(a, "VALUE", Blockly.Python.ORDER_NONE) || "";
         if ((b != "") && (c != "") && (d != "")) {
-            e = b + "[" + c + "] = " + d;
+            e = b + "[" + c + "] = " + d + "\n"; // mlopez fix newline
+            // e = b + "[" + c + "] = " + d;
         }
         return e;
     }
